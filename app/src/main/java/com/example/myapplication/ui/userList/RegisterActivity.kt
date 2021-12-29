@@ -1,10 +1,12 @@
 package com.example.myapplication.ui.userList
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import com.example.myapplication.R
@@ -34,6 +36,28 @@ class RegisterActivity : AppCompatActivity() {
         loginTextView = findViewById(R.id.loginT)
 
        // viewModel.upsert()
+        loginTextView.setOnClickListener {
+            val i = Intent(this, MainActivity::class.java)
+            startActivity(i)
+        }
 
     }
+
+    fun onRegisterClick(view: android.view.View) {
+        val remail = email.text.toString()
+        val rpassword = password.text.toString()
+
+        if(remail.length < 7)
+        {
+            email.setError("Enter Valid Email")
+        }
+        else if(rpassword.isEmpty())
+        {
+            password.setError("Please enter password!!!")
+        }
+        else{
+        Toast.makeText(this, "Please enter Details!!!", Toast.LENGTH_LONG).show()
+        }
+    }
+
 }
